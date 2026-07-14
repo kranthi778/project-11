@@ -272,3 +272,179 @@ SOC analysts watch network traffic to find spikes excessive SYN packets, abnorma
 In this part I learned about the most common Denial of Service attack techniques. I learned how these Denial of Service attacks target network protocols to use up system resources. 
 I also learned how security teams find these attacks and protect network availability by watching the network and using controls. 
 The Denial of Service attacks are a threat but with the right knowledge and tools we can protect our networks and systems.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Project 11. Denial of Service Attacks
+
+# Part 3 – Understanding and Demonstrating Flood Attacks
+
+## Objective
+
+I want to understand how people can use network protocols to launch Denial of Service attacks. In this part I will learn about UDP Flood attacks. See how to do an ICMP Flood attack using **hping3** in a safe lab setting.
+
+---
+
+# UDP Flood
+
+A UDP Flood attack is a type of Denial of Service attack where someone sends a lot of UDP packets to a target system. The target system tries to process all these packets. If no program is using the port it sends back an ICMP Destination Unreachable message. Doing this with a lot of packets can use up system resources and network bandwidth.
+
+### Characteristics
+
+- It uses the User Datagram Protocol (UDP).
+
+- It does not need a connection to send data.
+
+- It uses up network bandwidth.
+
+- It makes the CPU work harder.
+
+- It can make the system send back ICMP Destination messages.
+
+![Alt text](screenshots/udp-flood-overview.png)
+
+![Alt text](screenshots/udp-flood-overview2.png)
+
+**UDP Flood**
+
+```text
+
+udp-flood-overview.png
+
+```
+
+---
+
+# ICMP Flood
+
+An ICMP Flood attack, also known as a **Ping Flood** happens when someone sends a lot of ICMP Echo Request packets to a target system. This can use up bandwidth. Make the system slow so real users cannot use the network services.
+
+### Characteristics
+
+- It uses ICMP Echo Request packets.
+
+- It uses up network bandwidth.
+
+- It makes the network slower.
+
+- It can make network services Unreachable unavailable.
+
+---
+
+# ICMP Flood Using hping3 (Practical)
+
+## Lab Setup
+
+| Machine | Role |
+
+
+| Kali Linux | The machine that launches the attack |
+
+| Ubuntu 14.04 | The target machine |
+
+| hping3 | The tool used to launch the attack |
+
+Wireshark | The tool used to monitor network traffic |
+
+---
+
+## Command Used
+
+I used the command on the Kali Linux machine to launch an ICMP Flood attack on the Ubuntu target machine.
+
+```bash
+
+sudo hping3 --icmp --flood <Target_IP>
+
+```
+
+Replace `<Target_IP>` with the IP address of the Ubuntu target machine.
+
+![Alt text](screenshots/icmp-flood-hping3-terminal.png)
+
+**ICMP Flood Using hping3**
+
+```text
+
+icmp-flood-hping3-terminal.png
+
+```
+
+---
+
+## Traffic Analysis
+
+During the attack I used Wireshark on the Ubuntu target machine to see the incoming ICMP traffic. I saw a lot of ICMP Echo Request packets, which meant the attack was successful.
+
+![Alt text](screenshots/icmp-flood-wireshark.png)
+
+**ICMP Traffic Analysis**
+
+```text
+
+icmp-flood-wireshark.png
+
+```
+
+---
+
+## Observation
+
+During the demonstration:
+
+- I sent a lot of ICMP Echo Request packets.
+
+- Wireshark caught a lot of ICMP packets.
+
+- The target machines network activity increased a lot.
+
+- The practical demonstration showed how excessive ICMP traffic can affect network availability in a controlled lab setting.
+
+---
+
+# Comparison
+
+| TCP SYN Flood | UDP Flood | ICMP Flood |
+
+
+| It exploits the three-way handshake | It sends a lot of UDP packets | It sends a lot of ICMP Echo Request packets |
+
+| It creates open connections | It uses up bandwidth and processing resources | It uses up bandwidth and network resources |
+
+| It targets services | It targets UDP services | It targets ICMP processing |
+
+---
+
+# SOC Analyst Perspective
+
+SOC analysts always watch for TCP UDP and ICMP traffic using network monitoring tools, intrusion detection systems and SIEM platforms. If they see an increase, in ICMP traffic or a lot of Echo Requests it could be the start of a Denial of Service attack and they should look into it right away.
+
+---
+
+# Key Concepts Learned
+
+- UDP Flood
+
+- ICMP Flood
+
+- hping3
+
+- ICMP Echo Request
+
+- Network Traffic Analysis
+
+- Wireshark
+
+- Denial of Service
+
+- Network Availability
+
+- Resource Exhaustion
+
+---
+
+# conclusion
+
+In this part I learned how UDP Flood attacks use up system resources with a lot of UDP traffic and how to do an ICMP Flood attack using **hping3** in a lab. 
+I also learned how Wireshark can help monitor and analyze ICMP traffic during an attack, which helps security professionals find network behavior.
