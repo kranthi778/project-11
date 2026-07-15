@@ -598,6 +598,37 @@ exploit
 metasploit-synflood-execution.png
 
 ```
+----
+
+## Checking TCP SYN Flood Traffic with Wireshark
+
+After I started the Metasploit TCP SYN Flood tool, from the Kali Linux attacker machine I used Wireshark on the Ubuntu machine to catch and look at the network traffic.
+
+The packet catch shows a lot of TCP SYN packets going to port 80 all the time. This means the traffic I made really got to the target and Wireshark caught it. This test shows how we can use network monitoring tools to find and look at denial-of-service traffic as it is happening.
+
+### What I Found
+
+- The protocol is TCP
+
+- The TCP flag is SYN
+
+- The traffic is going to port 80
+
+- I used Wireshark to catch the packets live
+
+- This confirms that the traffic was made during the Metasploit SYN Flood test
+
+![Checking TCP SYN Flood Traffic with Wireshark
+
+[Alt text](screenshots/ubuntu-wireshark-synflood-packet-capture.png)
+
+**The Name of the Screenshot File**
+
+```text
+
+ubuntu-wireshark-synflood-packet-capture.png
+
+```
 
 ---
 
