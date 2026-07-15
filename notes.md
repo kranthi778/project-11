@@ -618,9 +618,9 @@ The packet catch shows a lot of TCP SYN packets going to port 80 all the time. T
 
 - This confirms that the traffic was made during the Metasploit SYN Flood test
 
-![Checking TCP SYN Flood Traffic with Wireshark
+ Checking TCP SYN Flood Traffic with Wireshark
 
-[Alt text](screenshots/ubuntu-wireshark-synflood-packet-capture.png)
+![Alt text](screenshots/ubuntu-wireshark-synflood-packet-capture.png)
 
 **The Name of the Screenshot File**
 
