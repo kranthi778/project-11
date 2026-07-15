@@ -142,7 +142,6 @@ I now understand how botnets contribute to large-scale attacks, techniques used 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Project 11. Denial of Service Attacks
 
 # Part 2 – Common Denial of Service Attack Techniques
 
@@ -276,7 +275,6 @@ The Denial of Service attacks are a threat but with the right knowledge and tool
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Project 11. Denial of Service Attacks
 
 # Part 3 – Understanding and Demonstrating Flood Attacks
 
@@ -454,7 +452,6 @@ I also learned how Wireshark can help monitor and analyze ICMP traffic during an
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-# Project 11. Denial of Service Attacks
 
 # Part 4 – TCP SYN Flood Using Metasploit Framework
 
@@ -677,3 +674,173 @@ SOC analysts watch for much SYN traffic because it can be a sign of a SYN Flood 
 In this part I learned how to use the Metasploit Framework to make TCP SYN Flood traffic in a safe environment. 
 I also learned how SOC analysts find SYN traffic and monitor denial-of-service activity using network analysis tools. 
 The Metasploit Framework is a tool, for TCP SYN Flood attacks.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Part 5 – Slowloris Attack
+
+## Objective
+
+The goal of this project is to understand how Slowloris attacks work. We do this by creating partial HTTP connections to a target web server in a safe laboratory setting. Slowloris attacks are different from flooding attacks because they use up server resources by keeping connections open for a long time.
+
+> **Note:** I only did this project in a controlled laboratory environment for learning purposes.
+
+---
+
+# Slowloris Attack
+
+Slowloris is a type of Denial of Service attack that targets web servers. It does this by making HTTP connections and keeping them open with incomplete requests. As more connections stay open the server runs out of connections for users.
+
+### Characteristics
+
+- It targets the HTTP service.
+
+- It uses HTTP requests.
+
+- It uses up server connection resources.
+
+- It works at the application layer.
+
+- It does not need a lot of bandwidth.
+
+---
+
+# Cloning the Slowloris Tool
+
+To start I cloned the Slowloris repository from GitHub.
+
+```bash
+
+git clone https://github.com/XCHADXFAQ77X/SLOWLORIS.git
+
+```
+
+![Alt text](screenshots/slowloris-git-clone.png)
+
+**Cloning the Slowloris Repository**
+
+```text
+
+slowloris-git-clone.png
+
+```
+
+---
+
+# Preparing the Tool
+
+Next I went to the Slowloris directory. Checked what was inside.
+
+```bash
+
+cd SLOWLORIS
+
+```
+
+```bash
+
+ls
+
+```
+
+Then I made the script executable.
+
+```bash
+
+chmod +x slowloris.pl
+
+```
+
+![Alt textt](screenshots/slowloris-tool-preparation.png)
+
+**Preparing the Slowloris Tool**
+
+```text
+
+slowloris-tool-preparation.png
+
+```
+
+---
+
+# Executing the Slowloris Attack
+
+After that I started the Slowloris attack on the target web server in the laboratory.
+
+```bash
+
+./slowloris.pl --dns <Target_IP>
+
+```
+
+I replaced `<Target_IP>` with the IP address of the target web server. To stop the attack I pressed **Ctrl + C** after seeing the traffic.
+
+![Alt text](screenshots/slowloris-attack-execution.png)
+
+**Slowloris Attack Execution**
+
+```text
+
+slowloris-attack-execution.png
+
+```
+
+---
+
+# Traffic Analysis
+
+I used Wireshark on the target machine to see the traffic and make sure the HTTP connections were reaching the web server.
+
+![Alt text](screenshots/ubuntu-wireshark-slowloris-capture.png)
+
+![Alt text](screenshots/ubuntu-wireshark-slowloris-capture2.png)
+
+**Ubuntu Wireshark Slowloris Capture**
+
+```text
+
+ubuntu-wireshark-slowloris-capture.png
+
+```
+
+---
+
+# Observation
+
+During the project I saw that many HTTP connections were made to the target. These connections stayed open because they were not complete. Wireshark caught the HTTP traffic during the project. The project showed how Slowloris can use up all the web server connections in a controlled laboratory setting.
+
+---
+
+# SOC Analyst Perspective
+
+People who monitor network security look for long-lived or incomplete HTTP connections, unusual web server resource use and repeated requests from the same source. They use network monitoring tools IDS/IPS solutions, web server logs and SIEM platforms to detect and investigate Slowloris attacks.
+
+---
+
+# Key Concepts Learned
+
+- Slowloris
+
+- Application Layer Denial of Service
+
+- HTTP Connections
+
+- Partial HTTP Requests
+
+- Web Server Resource Exhaustion
+
+- Wireshark
+
+- Traffic Analysis
+
+- Denial of Service
+
+---
+
+# conclusion
+
+In this project I learned how Slowloris attacks are different from network-layer flooding attacks. Slowloris attacks target the application layer. Keep many incomplete HTTP connections open. 
+I also learned how to use Wireshark to see the HTTP traffic and verify the attack, in a controlled laboratory setting. 
+Slowloris attacks are a type of Denial of Service attack that can harm web servers.
